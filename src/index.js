@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { render } from "react-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import App from "./App"
+import Home from "./Home"
+import NewTeamForm from "./NewTeamForm"
+import Teams from "./Teams"
+import Team from "./Team"
+import Invoices from './Invoices'
+import Invoice from './Invoice'
+import InvoicesSent from './InvoicesSent'
+import Layout from './Layout'
+// import your route components too
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />} >
+        <Route path="invoices" element={<Invoices />} >
+          <Route path=":invoiceId" element={<Invoice />} />
+          <Route path="sent" element={<InvoicesSent />} />
+        </Route>
+      </Route>
+    </Routes>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
